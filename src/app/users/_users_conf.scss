@@ -1,0 +1,31 @@
+@mixin users_conf() {
+  @media (max-width: 450px) {
+    .mat-tab-header-pagination {
+      display: none;
+    }
+
+    .mat-tab-links {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .mat-tab-link {
+      padding: 0;
+      width: 33%;
+      white-space: normal;
+      line-height: 12px;
+    }
+
+    .iconText {
+      font-size: 11px;
+    }
+  }
+
+  .table-overflow {
+    overflow-x: auto;
+  }
+
+  .table-overflow table {
+    min-width: 600px;
+  }
+}
