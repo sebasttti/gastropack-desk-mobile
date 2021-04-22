@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { Persona } from 'src/app/core/interfaces/persona.module';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';

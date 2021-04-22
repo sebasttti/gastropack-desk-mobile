@@ -15,7 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { MatExpansionModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({

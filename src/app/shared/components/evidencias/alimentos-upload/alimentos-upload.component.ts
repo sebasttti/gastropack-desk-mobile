@@ -1,7 +1,7 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { Alimento } from 'src/app/core/interfaces/alimento.module';
 import { GrupoAlimenticio } from 'src/app/core/interfaces/grupoAlimenticio.module';

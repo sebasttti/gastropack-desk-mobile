@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { Alimento } from 'src/app/core/interfaces/alimento.module';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';

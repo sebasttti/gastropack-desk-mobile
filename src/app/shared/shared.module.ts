@@ -8,7 +8,7 @@ import { ProfileDialogComponent } from './components/dialogs/profile-dialog/prof
 import { ReactiveFormsModule } from '@angular/forms';
 import { PlanesViewDialogComponent } from './components/dialogs/planes-view-dialog/planes-view-dialog.component';
 import { RouterModule } from '@angular/router';
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './translations/spanish-paginator.intl';
 import { AsignarRutinaDialogComponent } from './components/dialogs/asignar-rutina-dialog/asignar-rutina-dialog.component';
 import { AsignarPlanDialogComponent } from './components/dialogs/asignar-plan-dialog/asignar-plan-dialog.component';

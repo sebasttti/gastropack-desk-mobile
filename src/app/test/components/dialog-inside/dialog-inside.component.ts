@@ -1,6 +1,6 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { TestDialog1Component } from '../../dialogs/test-dialog1/test-dialog1.component';
 import { AlertComponent } from '../dialogFiles/alert/alert.component';
 import { Dialog3Component } from '../dialogFiles/dialog3/dialog3.component';
