@@ -7,7 +7,6 @@ import { TestHomeComponent } from './components/test-home/test-home.component';
 import { ValueBindingComponent } from './components/value-binding/value-binding.component';
 import { GetRequestComponent } from './components/httprequest/get-request/get-request.component';
 import { PostRequestComponent } from './components/httprequest/post-request/post-request.component';
-import { observable } from 'rxjs';
 import { ObservableComponent } from './components/observable/observable/observable.component';
 import { SelectComponent } from './components/select/select/select.component';
 import { Sub1Component } from './components/subscriptions/sub1/sub1.component';
@@ -17,6 +16,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { TablaComponent } from './components/tabla/tabla.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { DialogInsideComponent } from './components/dialog-inside/dialog-inside.component';
+import { PlatformComponent } from './components/platform/platform.component';
 
 const routes: Routes = [
   {
@@ -82,6 +82,10 @@ const routes: Routes = [
   {
     path: 'dialog-inside',
     component: DialogInsideComponent
+  },
+  {
+    path: 'platform',
+    component: PlatformComponent
   }
 ];
 

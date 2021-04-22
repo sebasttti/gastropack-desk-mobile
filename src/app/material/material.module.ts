@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatTableModule,
     MatPaginatorModule,
     MaterialFileInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   exports: [
     MatButtonModule,
@@ -55,7 +57,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatTableModule,
     MatPaginatorModule,
     MaterialFileInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule {}
