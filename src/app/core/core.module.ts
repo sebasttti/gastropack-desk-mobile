@@ -6,7 +6,8 @@ import { UserloginService } from './services/userlogin.service';
 import { NotificationsService } from './services/notifications.service';
 import { HandsetService } from './services/handset.service';
 import { UnsubscribeService } from './services/unsubscribe.service';
-import { MobileService } from './services/mobile.service';
+import { DeviceService } from './services/device.service';
+
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,7 @@ import { MobileService } from './services/mobile.service';
     NotificationsService,
     HandsetService,
     UnsubscribeService,
-    MobileService
+    DeviceService
   ]
 })
 export class CoreModule {}
