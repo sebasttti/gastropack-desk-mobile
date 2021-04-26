@@ -15,12 +15,7 @@ export class EvidenciasUploadMobileDialogComponent implements OnInit {
   nuevaEvidenciaForm: FormGroup;
   informacion: any = {};
   alimentos: Array<any> = [];
-  imagenes: Array<any> = [
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-  ];
+  imagenes: Array<any> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,7 +29,6 @@ export class EvidenciasUploadMobileDialogComponent implements OnInit {
 
   buildForm() {
     this.nuevaEvidenciaForm = this.formBuilder.group({
-      anexos: [undefined, [Validators.required, ImgCompliant.isImgCompliant]],
       observacion: ['', [Validators.required]]
     });
   }
@@ -49,7 +43,7 @@ export class EvidenciasUploadMobileDialogComponent implements OnInit {
 
     this.camera.getPicture(options).then(
       imageData => {
-        const base64Image = 'data:image/jpeg;base64,' + imageData;
+        const base64Image = imageData;
         this.imagenes.push(base64Image);
       },
       err => {
@@ -89,6 +83,8 @@ export class EvidenciasUploadMobileDialogComponent implements OnInit {
 
         this.dialogRef.close(data);
       }
+    } else {
+      console.log('Formulario no valido, por favor revisar');
     }
   }
 

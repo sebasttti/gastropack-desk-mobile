@@ -211,7 +211,7 @@ export class ListadoEvidenciasComponent
 
         let url: string;
 
-        if (environment.mobile) {
+        if (this.deviceService.mobile) {
           url =
             environment.apiUrl + '/shared/evidencias/agregarEvidenciaMobile/';
         } else {

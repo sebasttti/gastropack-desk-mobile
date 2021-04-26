@@ -23,7 +23,7 @@
             >
                 <img
                 *ngFor="let imagen of imagenes,let ind=index"
-                  src="{{imagen}}"
+                  src="data:image/jpeg;base64,{{imagen}}"
                   alt="img{{ind}}"
                 />          
             </div>
@@ -45,11 +45,6 @@
         ></textarea>
       </mat-form-field>
     </form>
-    <mat-error
-      *ngIf="nuevaEvidenciaForm.get('anexos').hasError('img_noCompliant')"
-      class="mb-10"
-      >Por favor verifica que todos los archivos sean imágenes</mat-error
-    >
   </div>
 
   <div>
