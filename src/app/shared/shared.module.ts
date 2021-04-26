@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BasicDialogComponent } from './components/dialogs/basic-dialog/basic-dialog.component';

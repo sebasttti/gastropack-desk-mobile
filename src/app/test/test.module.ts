@@ -28,7 +28,6 @@ import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { TestDialog1Component } from './dialogs/test-dialog1/test-dialog1.component';
 import { DialogInsideComponent } from './components/dialog-inside/dialog-inside.component';
 import { DialogInsideInsideComponent } from './components/dialog-inside-inside/dialog-inside-inside.component';
-
 @NgModule({
   declarations: [
     TestHomeComponent,

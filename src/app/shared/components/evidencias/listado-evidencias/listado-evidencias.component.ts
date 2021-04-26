@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
   Component,
   OnInit,
@@ -21,8 +23,8 @@ import { Plan } from 'src/app/core/interfaces/plan.module';
 import { EvidenciasViewDialogComponent } from '../../dialogs/evidencias-view-dialog/evidencias-view-dialog.component';
 import { EvidenciasUploadDialogComponent } from '../../dialogs/evidencias-upload-dialog/evidencias-upload-dialog.component';
 import { UserloginService } from 'src/app/core/services/userlogin.service';
+import { DeviceService } from 'src/app/core/services/device.service';
 import { EvidenciasUploadMobileDialogComponent } from '../../dialogs/evidencias-upload-mobile-dialog/evidencias-upload-mobile-dialog.component';
-
 @Component({
   selector: 'app-listado-evidencias',
   templateUrl: './listado-evidencias.component.html',
@@ -53,7 +55,8 @@ export class ListadoEvidenciasComponent
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private httpRequest: HttpRequestService,
-    private userLogged: UserloginService
+    private userLogged: UserloginService,
+    private deviceService: DeviceService
   ) {}
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -189,12 +192,11 @@ export class ListadoEvidenciasComponent
   }
 
   agregarEvidencia() {
-
     let evidenciasUploadDialog;
 
-    if (environment.mobile) {
-      evidenciasUploadDialog = EvidenciasUploadMobileDialogComponent
-    }else{
+    if (this.deviceService.mobile) {
+      evidenciasUploadDialog = EvidenciasUploadMobileDialogComponent;
+    } else {
       evidenciasUploadDialog = EvidenciasUploadDialogComponent;
     }
 
@@ -206,12 +208,13 @@ export class ListadoEvidenciasComponent
     thisDialog.afterClosed().subscribe(data => {
       if (data) {
         data.append('rutina_id', this.rutinaId.toString());
-        
-        let url:string;
+
+        let url: string;
 
         if (environment.mobile) {
-          url = environment.apiUrl + '/shared/evidencias/agregarEvidenciaMobile/';
-        }else{
+          url =
+            environment.apiUrl + '/shared/evidencias/agregarEvidenciaMobile/';
+        } else {
           url = environment.apiUrl + '/shared/evidencias/agregarEvidencia/';
         }
 

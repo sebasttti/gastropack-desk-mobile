@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
   Component,
   OnInit,
@@ -16,6 +17,7 @@ import { UserloginService } from 'src/app/core/services/userlogin.service';
 import { Plan } from 'src/app/core/interfaces/plan.module';
 import { environment } from 'src/environments/environment';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
+import { DeviceService } from 'src/app/core/services/device.service';
 
 @Component({
   selector: 'app-listado-planes',
@@ -33,18 +35,25 @@ export class ListadoPlanesComponent
   isHandsetValue: boolean;
   userLogged$;
 
-  displayedColumns: string[] = ['fecha', 'nombre', 'estado', 'opciones'];
+  displayedColumns: string[];
   dataSource = new MatTableDataSource();
   subscriptions: Array<Subscription> = [];
   listadoPlanes: Plan[] = [];
   tipoProceso$: number;
+  small: boolean;
 
   constructor(
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private userLogged: UserloginService,
-    private httpRequest: HttpRequestService
-  ) {}
+    private httpRequest: HttpRequestService,
+    private deviceService: DeviceService
+  ) {
+    this.small = this.deviceService.small;
+    this.displayedColumns = this.small
+      ? ['nombre', 'estado', 'opciones']
+      : ['fecha', 'nombre', 'estado', 'opciones'];
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

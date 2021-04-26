@@ -17,6 +17,7 @@ import { TablaComponent } from './components/tabla/tabla.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { DialogInsideComponent } from './components/dialog-inside/dialog-inside.component';
 import { PlatformComponent } from './components/platform/platform.component';
+import { StatusbarComponent } from './components/statusbar/statusbar.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: 'platform',
     component: PlatformComponent
+  },
+  {
+    path: 'statusBar',
+    component: StatusbarComponent
   }
 ];
 

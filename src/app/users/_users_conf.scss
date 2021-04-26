@@ -19,13 +19,26 @@
     .iconText {
       font-size: 11px;
     }
+
+    .table-overflow table {
+      table-layout: fixed;
+      th,td{
+        text-align: center;
+      }
+
+      tr td:first-child{
+        text-align: left;
+      }
+    }
   }
 
   .table-overflow {
     overflow-x: auto;
   }
 
-  .table-overflow table {
-    min-width: 600px;
+  @media (min-width: 451px) {
+    .table-overflow table {
+      min-width: 600px;
+    }
   }
 }

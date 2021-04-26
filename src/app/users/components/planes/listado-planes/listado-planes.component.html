@@ -28,7 +28,7 @@
                   The actual rendered columns are set as a property on the row definition" -->
     
           <!-- Position Column -->
-          <ng-container matColumnDef="fecha">
+          <ng-container matColumnDef="fecha" *ngIf="!small">
             <th mat-header-cell *matHeaderCellDef class="fecha-td">Fecha</th>
             <td mat-cell *matCellDef="let element" class="fecha-td">
               {{ element.plan_fecha | fechaPretty }}

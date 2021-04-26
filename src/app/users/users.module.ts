@@ -20,7 +20,6 @@ import { ListadoPlanesComponent } from './components/planes/listado-planes/lista
 import { SolicitarCitasDialogComponent } from './components/dialogs/solicitar-citas-dialog/solicitar-citas-dialog.component';
 import { MedicinaHomeComponent } from './components/medicina/medicina-home/medicina-home.component';
 import { MedicinaLayoutComponent } from './components/medicina/medicina-layout/medicina-layout.component';
-
 @NgModule({
   declarations: [
     UsersHomeComponent,

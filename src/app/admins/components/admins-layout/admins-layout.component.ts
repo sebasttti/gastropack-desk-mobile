@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
@@ -129,9 +130,7 @@ export class AdminsLayoutComponent implements OnInit, OnDestroy {
 
     notificationsDialog.afterClosed().subscribe(result => {
       if (result && result.update) {
-        const ids = this.notifications$.map(notif => {
-          return notif.notificacion_id;
-        });
+        const ids = this.notifications$.map(notif => notif.notificacion_id);
 
         const idsToSend = JSON.stringify(ids);
 

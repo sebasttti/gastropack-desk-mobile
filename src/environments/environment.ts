@@ -1,9 +1,9 @@
-import {common} from './common';
+import { common } from './common';
 
 const local = {
-  production: false,  
+  production: false,
   //apiUrl: 'http://localhost/gastropack/api'
-  apiUrl: 'http://stagegastropack.hmsistemas.net'
+  apiUrl: 'https://stagegastropack.hmsistemas.net'
 };
 
-export const environment = Object.assign(common,local);
+export const environment = Object.assign(common, local);

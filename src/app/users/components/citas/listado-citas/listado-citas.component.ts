@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
   Component,
   OnInit,
@@ -20,6 +22,7 @@ import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { CitasViewDialogComponent } from 'src/app/shared/components/dialogs/citas/citas-view-dialog/citas-view-dialog.component';
 import { SolicitarCitasDialogComponent } from '../../dialogs/solicitar-citas-dialog/solicitar-citas-dialog.component';
 import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
+import { DeviceService } from 'src/app/core/services/device.service';
 
 @Component({
   selector: 'app-listado-citas',
@@ -27,12 +30,7 @@ import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
   styleUrls: ['./listado-citas.component.scss']
 })
 export class ListadoCitasComponent implements OnInit, OnDestroy, AfterViewInit {
-  private userLogged$: UserLogged;
-  private listadoCitas: Cita[] = [];
-  private subscriptions = [];
-  private tipoProceso$: number;
-
-  displayedColumns: string[] = ['fecha', 'hora', 'estado', 'tipo', 'opciones'];
+  displayedColumns: string[];
   dataSource = new MatTableDataSource();
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -42,16 +40,29 @@ export class ListadoCitasComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
   isHandsetValue: boolean;
+  mobile: boolean;
+  small: boolean;
+
+  private userLogged$: UserLogged;
+  private listadoCitas: Cita[] = [];
+  private subscriptions = [];
+  private tipoProceso$: number;
 
   constructor(
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private userLogged: UserloginService,
-    private httpRequest: HttpRequestService
-  ) {}
+    private httpRequest: HttpRequestService,
+    private deviceService: DeviceService
+  ) {
+    this.mobile = this.deviceService.mobile;
+    this.small = this.deviceService.small;
+    this.displayedColumns = this.small
+      ? ['fecha','estado', 'opciones']
+      : ['fecha', 'hora', 'estado', 'tipo', 'opciones'];
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }

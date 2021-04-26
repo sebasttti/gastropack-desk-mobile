@@ -163,6 +163,50 @@
   }
 }
 
+.pt {
+  &-5 {
+    padding-top: 5px !important;
+  }
+
+  &-10 {
+    padding-top: 10px !important;
+  }
+
+  &-20 {
+    padding-top: 20px !important;
+  }
+
+  &-30 {
+    padding-top: 30px !important;
+  }
+
+  &-40 {
+    padding-top: 40px !important;
+  }
+}
+
+.pb {
+  &-5 {
+    padding-bottom: 5px !important;
+  }
+
+  &-10 {
+    padding-bottom: 10px !important;
+  }
+
+  &-20 {
+    padding-bottom: 20px !important;
+  }
+
+  &-30 {
+    padding-bottom: 30px !important;
+  }
+
+  &-40 {
+    padding-bottom: 40px !important;
+  }
+}
+
 .cursor {
   &-context-menu {
     cursor: context-menu;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserloginService } from 'src/app/core/services/userlogin.service';
@@ -9,8 +10,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { environment } from 'src/environments/environment';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { map } from 'rxjs/operators';
-import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
-import { resolve } from 'url';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-home',
@@ -28,10 +28,17 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog,
     private title: Title,
     private overlayContainer: OverlayContainer,
-    private httpRequest: HttpRequestService
+    private httpRequest: HttpRequestService,
+    private statusBar: StatusBar
   ) {
     this.setTitle();
     this.setMaterialContainer();
+    this.setStatusBar();
+  }
+
+  private setStatusBar(){
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.backgroundColorByHexString('#d1d1d1');
   }
 
   private setTitle() {
@@ -92,7 +99,6 @@ export class HomeComponent implements OnInit {
   }
 
   tB() {
-
     // tslint:disable-next-line: no-shadowed-variable
     return new Promise(resolve => {
       const data = new FormData();
@@ -126,6 +132,12 @@ export class HomeComponent implements OnInit {
       this.dialog.open(BasicDialogComponent, {
         data: { content: 'Por favor revisa tu usario y contraseña' }
       });
+    }
+  }
+
+  easterEgg() {
+    if (!environment.production) {
+      this.router.navigate(['/test/statusBar']);
     }
   }
 }

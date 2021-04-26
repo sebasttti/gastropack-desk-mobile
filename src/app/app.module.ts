@@ -9,7 +9,8 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
+import { Camera } from '@ionic-native/camera/ngx';
+import { StatusBar} from '@ionic-native/status-bar/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,9 +21,16 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
     CoreModule,
     HttpClientModule,
     MaterialModule,
-    IonicModule.forRoot({_forceStatusbarPadding:true})
+    IonicModule.forRoot()
   ],
-  providers: [Title,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    StatusBar,
+    Camera,
+    Title,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+
