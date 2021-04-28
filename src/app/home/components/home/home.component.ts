@@ -67,10 +67,22 @@ export class HomeComponent implements OnInit {
       case 3:
       case 4:
       case 5:
-        this.router.navigate(['/profs']);
+        if (this.deviceService.mobile) {
+          this.dialog.open(BasicDialogComponent, {
+            data: { content: 'Usuario no autorizado para la versión móvil' }
+          });
+        } else {
+          this.router.navigate(['/profs']);
+        }
         break;
       case 6:
-        this.router.navigate(['/admins']);
+        if (this.deviceService.mobile) {
+          this.dialog.open(BasicDialogComponent, {
+            data: { content: 'Usuario no autorizado para la versión móvil' }
+          });
+        } else {
+          this.router.navigate(['/admins']);
+        }
         break;
       default:
         break;
