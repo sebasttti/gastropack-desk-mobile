@@ -58,6 +58,29 @@
                 }
               ]
             },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                }
+              ]
+            },
             "ci": {
               "progress": false
             }
@@ -71,6 +94,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "stage": {
+              "browserTarget": "app:build:stage"
             },
             "ci": {
               "progress": false
@@ -131,6 +157,9 @@
             "production": {
               "devServerTarget": "app:serve:production"
             },
+            "stage": {
+              "devServerTarget": "app:serve:stage"
+            },
             "ci": {
               "devServerTarget": "app:serve:ci"
             }
@@ -144,6 +173,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "stage": {
+              "browserTarget": "app:build:stage"
             }
           }
         },
@@ -157,6 +189,10 @@
             "production": {
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
+            },
+            "stage": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:stage",
+              "devServerTarget": "app:serve:stage"
             }
           }
         }
