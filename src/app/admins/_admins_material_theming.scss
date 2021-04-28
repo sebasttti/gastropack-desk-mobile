@@ -1,3 +1,5 @@
+@import '_admins_conf.scss';
+
 $admins-theme-primary: mat-palette($mat-purple);
 $admins-theme-accent: mat-palette($gastropack-blue);
 $admins-theme-warn: mat-palette($mat-red);
@@ -25,4 +27,5 @@ $admins-material-theme: mat-light-theme(
 #admins-material-container, .admins-material-container {
   @include angular-material-theme($admins-material-theme);
   @include default-material-mixin($admins-material-theme);
+  @include admins_conf();
 }

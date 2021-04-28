@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/member-ordering */
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {
   AfterViewInit,
@@ -14,6 +16,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Cita } from 'src/app/core/interfaces/cita.module';
 import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
 import { UserLogged } from 'src/app/core/interfaces/userLogged.module';
+import { DeviceService } from 'src/app/core/services/device.service';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { UserloginService } from 'src/app/core/services/userlogin.service';
 import { CitasViewDialogComponent } from 'src/app/shared/components/dialogs/citas/citas-view-dialog/citas-view-dialog.component';
@@ -38,22 +41,16 @@ export class CitasPendientesComponent
   private listadoCitas: Cita[] = [];
   private subscriptions = [];
 
-  displayedColumns: string[] = [
-    'fecha',
-    'hora',
-    'tipo',
-    'paciente',
-    'doctor',
-    'estado',
-    'opciones'
-  ];
+  displayedColumns: string[];
   dataSource = new MatTableDataSource();
+  small: boolean;
 
   constructor(
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private userLogged: UserloginService,
-    private httpRequest: HttpRequestService
+    private httpRequest: HttpRequestService,
+    private deviceService: DeviceService
   ) {}
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -73,9 +70,27 @@ export class CitasPendientesComponent
   // =====================================
 
   async init() {
+    this.small = this.deviceService.small;
     await this.asignarHandsetValue();
     await this.verifyUserLogged();
+    this.columnasTabla();
     this.mostrarCitas();
+  }
+
+  private columnasTabla() {
+    if (this.deviceService.small) {
+      this.displayedColumns = ['fecha', 'paciente', 'estado', 'opciones'];
+    } else {
+      this.displayedColumns = [
+        'fecha',
+        'hora',
+        'tipo',
+        'paciente',
+        'doctor',
+        'estado',
+        'opciones'
+      ];
+    }
   }
 
   private asignarHandsetValue() {
@@ -183,4 +198,5 @@ export class CitasPendientesComponent
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }}
+  }
+}

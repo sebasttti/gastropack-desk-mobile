@@ -8,13 +8,7 @@ class ProfileModel{
     }
 
     function changedata(){
-
-        $checkEmail = $this->verifyEmail();
-
-        if (!$checkEmail) {
-            return false;
-        }
-        
+               
         $persona_id = $_REQUEST['persona_id'];
         $persona_nombres = $_REQUEST['persona_nombres'];
         $persona_apellidos = $_REQUEST['persona_apellidos'];
@@ -22,11 +16,9 @@ class ProfileModel{
         $persona_telefono = $_REQUEST['persona_telefono'];
         $persona_documento = $_REQUEST['persona_documento'];
         $persona_contrasena = $_REQUEST['persona_contrasena'];
-        $persona_email = $_REQUEST['persona_email'];
-
+       
         $squery = "
-        UPDATE persona SET
-         persona_email = '" . $persona_email. "',
+        UPDATE persona SET         
          persona_contrasena = '" . $persona_contrasena. "',
          persona_nombres = '" . $persona_nombres. "', 
          persona_apellidos = '" . $persona_apellidos . "', 
@@ -35,7 +27,7 @@ class ProfileModel{
          persona_documento = '" . $persona_documento . "' 
          where persona_id = $persona_id
         ";
-              
+        
         $this->db->query($squery);
         
         $result = $this->db->rowCount();

@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { map } from 'rxjs/operators';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { DeviceService } from 'src/app/core/services/device.service';
 
 @Component({
   selector: 'app-home',
@@ -29,16 +30,19 @@ export class HomeComponent implements OnInit {
     private title: Title,
     private overlayContainer: OverlayContainer,
     private httpRequest: HttpRequestService,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private deviceService: DeviceService
   ) {
     this.setTitle();
     this.setMaterialContainer();
     this.setStatusBar();
   }
 
-  private setStatusBar(){
-    this.statusBar.overlaysWebView(false);
-    this.statusBar.backgroundColorByHexString('#d1d1d1');
+  private setStatusBar() {
+    if (this.deviceService.mobile) {
+      this.statusBar.overlaysWebView(false);
+      this.statusBar.backgroundColorByHexString('#d1d1d1');
+    }
   }
 
   private setTitle() {

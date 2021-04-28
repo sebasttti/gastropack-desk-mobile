@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { HttpRequestService } from './http-request.service';
 import { BehaviorSubject } from 'rxjs';
 import { UserLogged } from '../interfaces/userLogged.module';
 import { environment } from 'src/environments/environment';
-import { MessageRequest } from '../interfaces/messageRequest.module';
 import { map } from 'rxjs/operators';
 import { LoginModule } from '../interfaces/login.module';
 

@@ -6,6 +6,9 @@
   <h3>Meta del plan</h3>
   <p>{{ data.plan.plan_meta }}</p>
 
+  <h3>Profesional encargado</h3>
+  <p>{{ data.plan.plan_profesional_nombre }}</p>
+
   <div *ngIf="data.plan.plan_anexos.length > 0">
     <h3>Imágenes y anexos del plan</h3>
     <div class="{{data.plan.plan_anexos.length === 1 ? 'row center-xs':'row evenly-xs'}}">

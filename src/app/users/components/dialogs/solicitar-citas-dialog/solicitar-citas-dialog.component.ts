@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable radix */
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -31,7 +33,7 @@ export class SolicitarCitasDialogComponent implements OnInit {
   }
 
   async init() {
-    this.tipoProceso = (parseInt(this.data.tipoProceso, 0) + 2).toString();
+    this.tipoProceso = (parseInt(this.data.tipoProceso, 0) + 1).toString();
 
     await this.traerProfesionales();
     await this.traerTipoCita();
@@ -82,7 +84,7 @@ export class SolicitarCitasDialogComponent implements OnInit {
       fecha: ['', Validators.required],
       hora: ['', Validators.required],
       profesional: ['', Validators.required],
-      tipo: [ `${this.data.tipoProceso}` , Validators.required]
+      tipo: [`${this.data.tipoProceso}`, Validators.required]
     });
   }
 
@@ -90,12 +92,17 @@ export class SolicitarCitasDialogComponent implements OnInit {
     if (this.citasApplyForm.valid) {
       const dataToReturn = new FormData();
       dataToReturn.append('cita_usuario', this.data.usuario_id);
-      dataToReturn.append('cita_profesional', this.citasApplyForm.value.profesional);
-      dataToReturn.append('cita_fecha', `${this.citasApplyForm.value.fecha} ${this.citasApplyForm.value.hora}`);
+      dataToReturn.append(
+        'cita_profesional',
+        this.citasApplyForm.value.profesional
+      );
+      dataToReturn.append(
+        'cita_fecha',
+        `${this.citasApplyForm.value.fecha} ${this.citasApplyForm.value.hora}`
+      );
       dataToReturn.append('cita_tipo', this.citasApplyForm.value.tipo);
 
       this.dialogRef.close(dataToReturn);
-
     } else {
       alert('Por favor revisa la información para continuar');
     }

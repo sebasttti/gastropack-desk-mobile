@@ -17,17 +17,15 @@ export class PlanesViewDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   getVideoIframe(url) {
-    let video;
-    let results;
-
     if (url === null) {
       return '';
     }
-    results = url.match('[\\?&]v=([^&#]*)');
-    video = results === null ? url : results[1];
+    const results = url.match('[\\?&]v=([^&#]*)');
+    const video = results === null ? url : results[1];
 
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       'https://www.youtube.com/embed/' + video
