@@ -2,7 +2,7 @@
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Gastropack</name>
     <description>App de seguimiento de pacientes de Gastropack</description>
-    <author email="lucas.gomez@zukytech.com" href="http://zukytech.com/">Zukytech</author>
+    <author email="lucasgomezv.lg@gmail.com" href="http://zukytech.com/">Zukytech</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
