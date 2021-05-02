@@ -1,8 +1,8 @@
 import { common } from './common';
 
 const stage = {
-  production: false,
-  apiUrl: 'https://stagegastropack.hmsistemas.net'
+  apiUrl: 'https://stagegastropack.hmsistemas.net',
+  stage: true
 };
 
 export const environment = Object.assign(common, stage);
