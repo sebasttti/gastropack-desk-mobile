@@ -12,8 +12,6 @@ import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { map } from 'rxjs/operators';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { DeviceService } from 'src/app/core/services/device.service';
-import { env } from 'node:process';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
