@@ -54,7 +54,7 @@ export class ProfileDialogComponent implements OnInit, OnDestroy {
   sendChanges() {
     if (this.profileForm.valid) {
       const dataToSend = new FormData();
-      dataToSend.append('persona_id', this.userLogin$.id);
+      dataToSend.append('persona_id', this.data.id ? this.data.id : this.userLogin$.id);
       dataToSend.append('persona_nombres', this.profileForm.value.nombres);
       dataToSend.append('persona_apellidos', this.profileForm.value.apellidos);
       dataToSend.append('persona_direccion', this.profileForm.value.direccion);

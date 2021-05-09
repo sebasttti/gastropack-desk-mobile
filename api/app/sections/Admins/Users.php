@@ -44,6 +44,19 @@ class Users extends Controller{
         printJSON($response);
     }
 
+    function eliminarUsuario(){
+        $eliminacionUsuario = $this->model->eliminarUsuario();
+        $response;
+
+        if ($eliminacionUsuario) {
+            $response = successFailure(true);            
+        }else{
+            $response = successFailure(false);
+        }
+
+        printJSON($response);
+    }
+
     function activarUsuario(){
         $activacionUsuario = $this->model->activarUsuario();
         $response;

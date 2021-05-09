@@ -18,6 +18,8 @@ import { Persona } from 'src/app/core/interfaces/persona.module';
 import { environment } from 'src/environments/environment';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
+import { ProfileDialogComponent } from 'src/app/shared/components/dialogs/profile-dialog/profile-dialog.component';
+import { AcceptDeclineDialogComponent } from 'src/app/shared/components/dialogs/accept-decline-dialog/accept-decline-dialog.component';
 
 @Component({
   selector: 'app-listado-profesionales',
@@ -132,8 +134,41 @@ export class ListadoProfesionalesComponent
       }
     );
 
-    opcionesProfesional.afterClosed().subscribe(res => {
+    opcionesProfesional.afterClosed().subscribe(async res => {
       if (res) {
+
+        if (res.option == 'modificar') {
+          this.modificarPersona(id);
+          return;
+        }
+
+        if (res.option == 'eliminar') {
+          const confirmacionEliminacion = () =>
+            new Promise((resolve) => {
+              const tipo = 'profesional';
+
+              const confirmarEliminar = this.dialog.open(
+                AcceptDeclineDialogComponent,
+                {
+                  data: {
+                    title: `Eliminar ${tipo}`,
+                    content: `Estas seguro de que deseas eliminar este ${tipo}`
+                  }
+                }
+              );
+
+              confirmarEliminar.afterClosed().subscribe(res => {
+                resolve(res);
+              });
+            });
+
+          const confirmacion = await confirmacionEliminacion();
+
+          if (!confirmacion) {
+            return;
+          }
+        }
+
         let url = '';
         const data = new FormData();
 
@@ -146,6 +181,10 @@ export class ListadoProfesionalesComponent
 
           case 'activar':
             url = environment.apiUrl + '/Admins/Profs/activarProfesional/';
+            break;
+          
+          case 'eliminar':
+            url = environment.apiUrl + '/Admins/Profs/eliminarProfesional/';
             break;
 
           default:
@@ -164,6 +203,31 @@ export class ListadoProfesionalesComponent
           });
       }
     });
+  }
+
+  modificarPersona($idPersona: any) {
+    const personaNF: Persona = this.listadoProfesionales.find(
+      prof => prof.persona_id == $idPersona
+    );
+
+    const personaF: any = {
+      id: personaNF.persona_id,
+      nombres: personaNF.persona_nombres,
+      apellidos: personaNF.persona_apellidos,
+      direccion: personaNF.persona_direccion,
+      telefono: personaNF.persona_telefono,
+      documento: personaNF.persona_documento,
+      contrasena: personaNF.persona_contrasena
+    };
+    
+    const profileDialog = this.dialog.open(ProfileDialogComponent, {
+      width: this.isHandsetValue ? '90%' : '600px',
+      data: personaF
+    });
+
+    profileDialog.afterClosed().subscribe(()=>{
+      this.mostrarProfesionales();
+    })
   }
 
   agregarProfesional() {

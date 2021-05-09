@@ -21,12 +21,14 @@ class UsersModel{
                 p.persona_direccion,
                 p.persona_telefono,
                 p.persona_documento,
+                p.persona_contrasena,
                 p.estado_persona_id as persona_estado_id,
                 concat('Usuario ', ep.estado_persona_desc) as persona_estado_nombre
                 from persona p
                 join tipo_persona tp on p.tipo_persona_id = tp.tipo_persona_id
                 join estado_persona ep on p.estado_persona_id = ep.estado_persona_id
                 where p.tipo_persona_id in (1)
+                and p.estado_persona_id < 3
                 order by p.persona_id desc
         ";
 
@@ -70,6 +72,27 @@ class UsersModel{
         "UPDATE
          persona SET         
          estado_persona_id = 1
+         where persona_id=$usuario_id;";
+
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    function eliminarUsuario(){
+
+        $usuario_id = $_REQUEST['usuario_id'];
+       
+        $query = 
+        "UPDATE
+         persona SET         
+         estado_persona_id = 3
          where persona_id=$usuario_id;";
 
         $this->db->query($query);         

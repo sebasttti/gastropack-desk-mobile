@@ -6,7 +6,7 @@
       <button
         mat-stroked-button        
         color="primary"
-        *ngIf="(userLogged$.type == 2) || (userLogged$.type == 3) || (userLogged$.type == 4)"
+        *ngIf="(userLogged$.type !== 1) && (userLogged$.type !== 6)"
         style="display: block;"
         class="mt-10 mb-10"
         (click) = "asignarPlan()"

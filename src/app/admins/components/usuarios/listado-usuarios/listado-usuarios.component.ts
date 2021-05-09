@@ -18,6 +18,8 @@ import { Persona } from 'src/app/core/interfaces/persona.module';
 import { environment } from 'src/environments/environment';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
+import { ProfileDialogComponent } from 'src/app/shared/components/dialogs/profile-dialog/profile-dialog.component';
+import { AcceptDeclineDialogComponent } from 'src/app/shared/components/dialogs/accept-decline-dialog/accept-decline-dialog.component';
 
 @Component({
   selector: 'app-listado-usuarios',
@@ -118,20 +120,49 @@ export class ListadoUsuariosComponent
       prof => prof.persona_id === id
     ).persona_estado_id;
 
-    const opcionesProfesional = this.dialog.open(
-      OpcionesPersonaDialogComponent,
-      {
-        width: this.isHandsetValue ? '90%' : '500px',
-        data: {
-          persona_id: `${id}`,
-          persona_estado_id: `${persona_estado_id}`,
-          persona_tipo: 'usuario'
-        }
+    const opcionesUsuario = this.dialog.open(OpcionesPersonaDialogComponent, {
+      width: this.isHandsetValue ? '90%' : '500px',
+      data: {
+        persona_id: `${id}`,
+        persona_estado_id: `${persona_estado_id}`,
+        persona_tipo: 'usuario'
       }
-    );
+    });
 
-    opcionesProfesional.afterClosed().subscribe(res => {
+    opcionesUsuario.afterClosed().subscribe(async res => {
       if (res) {
+        if (res.option == 'modificar') {
+          this.modificarPersona(id);
+          return;
+        }
+
+        if (res.option == 'eliminar') {
+          const confirmacionEliminacion = () =>
+            new Promise((resolve) => {
+              const tipo = 'usuario';
+
+              const confirmarEliminar = this.dialog.open(
+                AcceptDeclineDialogComponent,
+                {
+                  data: {
+                    title: `Eliminar ${tipo}`,
+                    content: `Estas seguro de que deseas eliminar este ${tipo}`
+                  }
+                }
+              );
+
+              confirmarEliminar.afterClosed().subscribe(res => {
+                resolve(res);
+              });
+            });
+
+          const confirmacion = await confirmacionEliminacion();
+
+          if (!confirmacion) {
+            return;
+          }
+        }
+
         let url = '';
         const data = new FormData();
 
@@ -144,6 +175,10 @@ export class ListadoUsuariosComponent
 
           case 'activar':
             url = environment.apiUrl + '/Admins/Users/activarUsuario/';
+            break;
+
+          case 'eliminar':
+            url = environment.apiUrl + '/Admins/Users/eliminarUsuario/';
             break;
 
           default:
@@ -161,6 +196,31 @@ export class ListadoUsuariosComponent
             }
           });
       }
+    });
+  }
+
+  modificarPersona($idPersona: any) {
+    const personaNF: Persona = this.listadoUsuarios.find(
+      usuario => usuario.persona_id == $idPersona
+    );
+
+    const personaF: any = {
+      id: personaNF.persona_id,
+      nombres: personaNF.persona_nombres,
+      apellidos: personaNF.persona_apellidos,
+      direccion: personaNF.persona_direccion,
+      telefono: personaNF.persona_telefono,
+      documento: personaNF.persona_documento,
+      contrasena: personaNF.persona_contrasena
+    };
+
+    const profileDialog = this.dialog.open(ProfileDialogComponent, {
+      width: this.isHandsetValue ? '90%' : '600px',
+      data: personaF
+    });
+
+    profileDialog.afterClosed().subscribe(() => {
+      this.mostrarUsuarios();
     });
   }
 

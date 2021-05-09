@@ -252,7 +252,7 @@
 }
 
 .table-container {
-  width: 80%;
+  width: 95%;
 }
 
 @media (max-width: 600px) {
@@ -290,6 +290,16 @@
     height: 80% !important;
     font-size: 80%;
   }
+}
+
+th,td{
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  text-align: center !important;
+}
+
+table{
+  table-layout: fixed;
 }
 
 //==================================

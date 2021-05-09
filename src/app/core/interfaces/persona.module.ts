@@ -10,4 +10,5 @@ export interface Persona {
   persona_documento: string;
   persona_estado_id: string;
   persona_estado_nombre: string;
+  persona_contrasena: string
 }

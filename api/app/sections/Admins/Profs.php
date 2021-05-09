@@ -58,6 +58,19 @@ class Profs extends Controller{
         printJSON($response);
     }
 
+    function eliminarProfesional(){
+        $eliminacionProfesional = $this->model->eliminarProfesional();
+        $response;
+
+        if ($eliminacionProfesional) {
+            $response = successFailure(true);            
+        }else{
+            $response = successFailure(false);
+        }
+
+        printJSON($response);
+    }
+
     function activarProfesional(){
         $activacionProfesional = $this->model->activarProfesional();
         $response;

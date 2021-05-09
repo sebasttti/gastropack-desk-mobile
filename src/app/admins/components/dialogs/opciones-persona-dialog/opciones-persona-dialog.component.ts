@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class OpcionesPersonaDialogComponent implements OnInit {
   avilableOption = [];
+  permitirEliminar = false;
   constructor(
     public dialogRef: MatDialogRef<OpcionesPersonaDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

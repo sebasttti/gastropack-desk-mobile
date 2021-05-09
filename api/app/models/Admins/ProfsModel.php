@@ -20,12 +20,14 @@ class ProfsModel{
             p.persona_direccion,
             p.persona_telefono,
             p.persona_documento,
+            p.persona_contrasena,
             p.estado_persona_id as persona_estado_id,
             concat('Profesional ', ep.estado_persona_desc) as persona_estado_nombre
             from persona p
             join tipo_persona tp on p.tipo_persona_id = tp.tipo_persona_id
             join estado_persona ep on p.estado_persona_id = ep.estado_persona_id
             where p.tipo_persona_id not in (1,6)
+            and p.estado_persona_id < 3
             order by p.persona_id desc
         ";
 
@@ -79,6 +81,26 @@ class ProfsModel{
 
     }
 
+    function eliminarProfesional(){
+
+        $profesional_id = $_REQUEST['profesional_id'];
+       
+        $query = 
+        "UPDATE
+         persona SET         
+         estado_persona_id = 3
+          where persona_id=$profesional_id";
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    
     function agregarProfesional(){
         $profesional_tipo_id = $_REQUEST['profesional_tipo_id'];
         $profesional_email = $_REQUEST['profesional_email'];
