@@ -101,7 +101,6 @@ export class HomeComponent implements OnInit {
   }
 
   async init() {
-    await this.tB();
     this.userLogged.verifyUserLogged().then(result => {
       if (result) {
         // existe un usuario logueado
