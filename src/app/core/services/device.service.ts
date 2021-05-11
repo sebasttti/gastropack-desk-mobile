@@ -10,7 +10,7 @@ export class DeviceService {
 
   constructor(private platform: Platform) {
     this.mobile =
-      this.platform.is('android') || this.platform.is('ios') ? true : false;
+      this.platform.is('cordova') ? true : false;
 
     this.small = this.platform.width() <= 450 ? true : false;
   }
