@@ -199,6 +199,32 @@ class RutinasModel {
 
     }
 
+    function editarInformacionRutina(){
+        
+        $rutina_id = $_REQUEST['rutina_id'];
+        $rutina_informacion = $_REQUEST['rutina_informacion'];
+
+
+        $query= "
+        
+        UPDATE rutina
+        set 
+        rutina_informacion= '".$rutina_informacion."'
+        where rutina_id=$rutina_id
+        ";
+
+
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {                                  
+            return array('status' => 'success', 'message'=>'Datos modificados con exito');            
+        }else{
+            return array('status' => 'failure', 'message'=>'Problema con la base de datos');
+        }
+
+    }
+
     function mostrarRutinaActual(){
 
         $rutina_id = $_REQUEST['rutina_id'];

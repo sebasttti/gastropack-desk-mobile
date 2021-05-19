@@ -52,6 +52,12 @@ class Rutinas extends Controller{
         printJSON($response);
     }
 
+    function editarInformacionRutina(){
+        $editarInformacionRutinas = $this->model->editarInformacionRutina();
+        
+        printJSON($editarInformacionRutinas);
+    }
+
     function mostrarRutinaActual(){
 
         $rutinaActual = $this->model->mostrarRutinaActual();

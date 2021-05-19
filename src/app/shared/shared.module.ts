@@ -31,6 +31,7 @@ import { VerDietaComponent } from './components/rutinas/ver-dieta/ver-dieta.comp
 import { AlimentosUploadComponent } from './components/evidencias/alimentos-upload/alimentos-upload.component';
 import { AlimentosViewComponent } from './components/evidencias/alimentos-view/alimentos-view.component';
 import { EvidenciasUploadMobileDialogComponent } from './components/dialogs/evidencias-upload-mobile-dialog/evidencias-upload-mobile-dialog.component';
+import { SwitchAlimentosDialogComponent } from './components/dialogs/switch-alimentos-dialog/switch-alimentos-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EvidenciasUploadMobileDialogComponent } from './components/dialogs/evid
     CreacionDietaComponent,
     VerDietaComponent,
     AlimentosUploadComponent,
-    AlimentosViewComponent
+    AlimentosViewComponent,
+    SwitchAlimentosDialogComponent
   ],
   exports: [
     BasicDialogComponent,
@@ -86,7 +88,8 @@ import { EvidenciasUploadMobileDialogComponent } from './components/dialogs/evid
     RutinasViewDialogComponent,
     EvidenciasViewDialogComponent,
     EvidenciasUploadDialogComponent,
-    EvidenciasUploadMobileDialogComponent
+    EvidenciasUploadMobileDialogComponent,
+    SwitchAlimentosDialogComponent
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() }

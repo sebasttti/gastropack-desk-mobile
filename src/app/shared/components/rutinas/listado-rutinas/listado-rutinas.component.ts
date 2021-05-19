@@ -20,6 +20,7 @@ import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { environment } from 'src/environments/environment';
 import { MessageRequest } from 'src/app/core/interfaces/messageRequest.module';
 import { RutinasViewDialogComponent } from '../../dialogs/rutinas-view-dialog/rutinas-view-dialog.component';
+import { SwitchAlimentosDialogComponent } from '../../dialogs/switch-alimentos-dialog/switch-alimentos-dialog.component';
 
 @Component({
   selector: 'app-listado-rutinas',
@@ -129,7 +130,7 @@ export class ListadoRutinasComponent
         .pipe(map(result => result as MessageRequest))
         .subscribe(response => {
           if (response.status === 'success') {
-            this.listadoRutinas = response.message;
+            this.listadoRutinas = response.message;           
             this.dataSource.data = this.listadoRutinas;
             resolve(true);
           }
@@ -162,10 +163,18 @@ export class ListadoRutinasComponent
     verRutina.afterClosed().subscribe(response=>{
       if (response.opcionSwitchAlimentario) {
         //se abre el Dialogo de Switch Alimentario
+        const switchAlDialog = this.dialog.open(SwitchAlimentosDialogComponent,{
+          data:{switchAlimentario:response.switchAlimentario,rutina:rutinaToShow},
+          width: this.isHandsetValue ? '90%' : '600px'
+        })
 
         //una vez se cierra, se actualiza la dieta
+        switchAlDialog.afterClosed().subscribe(async ()=>{
+          await this.traerRutinas();
+          //se vuelve a abrir el dialogo de verRutina
+          this.verRutina(index);
+        })
 
-        //se vuelve a abrir el dialogo de verRutina
         
       }
     })
