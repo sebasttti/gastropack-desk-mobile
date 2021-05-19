@@ -28,7 +28,7 @@
             *ngFor="let alimento of jornada.alimentos; index as alimentoIndex"
           >
             <tr>
-              <td>
+              <td (click)="switchAlimentos(dia,jornada,alimento)">
                 {{ findAlimento(alimento) }}           
               </td>
             </tr>

@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>{{ data.rutina.rutina_nombre }}</h1>
-<mat-dialog-content>
+<mat-dialog-content *ngIf="userLogin$">
   <h3>Descripción de la rutina</h3>
   <p>{{ data.rutina.rutina_descripcion }}</p>
 
@@ -84,8 +84,11 @@
 
   <ng-container *ngIf="data.plan.plan_tipo === '3'">
     <h3>Dieta de la rutina</h3>
-    <h5 class="color-accent">** Aplica sólo para planes de nutrición</h5>    
-    <app-ver-dieta [informacion]="data.rutina.rutina_informacion"></app-ver-dieta>
+    <h5 class="color-accent">** Aplica sólo para planes de nutrición</h5>
+    <div *ngIf="userLogin$.type =='1'">
+      <h5 class="color-accent">** Para realizar un switch de alimentos, {{accion}} sobre el alimento que desees cambiar</h5>    
+    </div>
+    <app-ver-dieta (switchAlimentario)="cerrarConSwitch($event)" [informacion]="data.rutina.rutina_informacion" [userLogin$]="userLogin$"></app-ver-dieta>
   </ng-container>
 
 </mat-dialog-content>

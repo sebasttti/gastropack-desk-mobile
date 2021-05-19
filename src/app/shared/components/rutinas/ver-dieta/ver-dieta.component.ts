@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Alimento } from 'src/app/core/interfaces/alimento.module';
 import { Dia } from 'src/app/core/interfaces/dia.module';
@@ -6,6 +6,8 @@ import { GrupoAlimenticio } from 'src/app/core/interfaces/grupoAlimenticio.modul
 import { JornadaAlimenticia } from 'src/app/core/interfaces/jornadaalimenticia.module';
 import { HttpRequestService } from 'src/app/core/services/http-request.service';
 import { environment } from 'src/environments/environment';
+import { UserLogged } from 'src/app/core/interfaces/userLogged.module';
+import { SwitchAlimentario } from 'src/app/core/interfaces/switchAlimentario.module';
 
 @Component({
   selector: 'app-ver-dieta',
@@ -14,6 +16,10 @@ import { environment } from 'src/environments/environment';
 })
 export class VerDietaComponent implements OnInit {
   @Input() informacion: string;
+
+  @Input() userLogin$: UserLogged;
+
+  @Output() switchAlimentario: EventEmitter<SwitchAlimentario>= new EventEmitter();
 
   dieta: Array<any> = [];
 
@@ -201,5 +207,21 @@ export class VerDietaComponent implements OnInit {
     return this.alimentos.find(
       cetteal => cetteal.alimento_id === alimento.alimento_id.toString()
     ).alimento_nombre;
+  }
+
+  switchAlimentos(dia: any, jornadaalimenticia: any, alimento: any) {
+    if (this.userLogin$.type.toString() == '1') {
+      const dia_id = dia.dia_id;
+      const jornadaalimenticia_id = jornadaalimenticia.jornadaalimenticia_id;
+      const alimento_id = alimento.alimento_id;
+
+      const thisSwitch:SwitchAlimentario = {
+        dia_id: dia_id.toString(),
+        jornadaalimenticia_id: jornadaalimenticia_id.toString(),
+        alimento_id: alimento_id.toString()
+      };
+
+      this.switchAlimentario.emit(thisSwitch);
+    }
   }
 }

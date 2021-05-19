@@ -154,10 +154,21 @@ export class ListadoRutinasComponent
     const rutinaToShow = this.listadoRutinas.find(
       rutina => rutina.rutina_id === index
     );
-    this.dialog.open(RutinasViewDialogComponent, {
+    const verRutina = this.dialog.open(RutinasViewDialogComponent, {
       data: { rutina: rutinaToShow, plan: this.planActual },
       width: this.isHandsetValue ? '90%' : '600px'
     });
+
+    verRutina.afterClosed().subscribe(response=>{
+      if (response.opcionSwitchAlimentario) {
+        //se abre el Dialogo de Switch Alimentario
+
+        //una vez se cierra, se actualiza la dieta
+
+        //se vuelve a abrir el dialogo de verRutina
+        
+      }
+    })
   }
 
   asignarRutina() {
