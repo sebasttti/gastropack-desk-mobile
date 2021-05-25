@@ -270,7 +270,7 @@ class RutinasModel {
         $query = "select alimento_id,
                     grupoalimenticio_id,
                     alimento_nombre,
-                    if(alimento_estado=100,'activo','inactivo') as alimento_estado
+                    estado_alimento_id as alimento_estado_id
                     from alimento";
         $this->db->query($query);
         $response = $this->db->responseAll();
@@ -304,7 +304,7 @@ class RutinasModel {
         $alimento_nombre = $_REQUEST['alimento_nombre'];
         
         $query = "INSERT INTO alimento (grupoalimenticio_id,alimento_nombre) 
-                  values ($grupoalimenticio_id,$alimento_nombre)";
+                  VALUES ($grupoalimenticio_id,'$alimento_nombre')";
 
         $this->db->query($query);         
         $result = $this->db->rowCount();
@@ -323,8 +323,8 @@ class RutinasModel {
         $alimento_estado = $_REQUEST['alimento_estado'];
 
         $query = "UPDATE alimento SET 
-                    alimento_nombre = $alimento_nombre,
-                    alimento_estado = $alimento_estado
+                    alimento_nombre = '$alimento_nombre',
+                    estado_alimento_id = $alimento_estado
                   WHERE alimento_id = $alimento_id";
 
         $this->db->query($query);         

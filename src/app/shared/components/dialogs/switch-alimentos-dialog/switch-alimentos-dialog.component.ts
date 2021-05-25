@@ -156,7 +156,8 @@ export class SwitchAlimentosDialogComponent implements OnInit {
       alimento =>
         alimento.grupoalimenticio_id ==
           this.alimentoActual.grupoalimenticio_id &&
-        alimento.alimento_id !== this.alimentoActual.alimento_id
+        alimento.alimento_id !== this.alimentoActual.alimento_id &&
+        alimento.alimento_estado_id == '1'
     );
   }
 }

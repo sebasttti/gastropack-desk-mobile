@@ -15,7 +15,7 @@ import { SwitchAlimentario } from 'src/app/core/interfaces/switchAlimentario.mod
   styleUrls: ['./ver-dieta.component.scss']
 })
 export class VerDietaComponent implements OnInit {
-  @Input() informacion: string;
+  @Input() informacion: any;
 
   @Input() userLogin$: UserLogged;
 
@@ -43,9 +43,9 @@ export class VerDietaComponent implements OnInit {
     return new Promise(resolve => {
       // 1. verificar que el objeto no este vacio
 
-      if (this.informacion !== '') {
+      if (this.informacion.rutina.rutina_informacion !== '') {
         // 2. verificar que el objeto tenga el componetne dieta
-        const infoJSON = JSON.parse(this.informacion);
+        const infoJSON = JSON.parse(this.informacion.rutina.rutina_informacion);
 
         if (infoJSON.dieta) {
           // 3. asignar la información a la variable dieta
@@ -210,7 +210,7 @@ export class VerDietaComponent implements OnInit {
   }
 
   switchAlimentos(dia: any, jornadaalimenticia: any, alimento: any) {
-    if (this.userLogin$.type.toString() == '1') {
+    if (this.userLogin$.type.toString() == '1' && this.informacion.plan.plan_estado_id == '1') {
       const dia_id = dia.dia_id;
       const jornadaalimenticia_id = jornadaalimenticia.jornadaalimenticia_id;
       const alimento_id = alimento.alimento_id;

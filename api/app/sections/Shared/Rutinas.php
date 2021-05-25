@@ -141,6 +141,7 @@ class Rutinas extends Controller{
     }
 
     function agregarAlimento(){
+        textHeaders();
 
         $agregarAlimento = $this->model->agregarAlimento();
         

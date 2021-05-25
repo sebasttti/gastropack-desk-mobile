@@ -104,7 +104,7 @@ export class ConfigurarSwitchAlimentarioComponent implements OnInit {
 
   agregarAlimento() {
     if (this.gruposalimenticiosfc.valid) {
-      const grupoalimenticioselected = this.gruposalimenticios.filter(
+      const grupoalimenticioselected = this.gruposalimenticios.find(
         ga => ga.grupoalimenticio_id == this.gruposalimenticiosfc.value
       );
 
@@ -113,12 +113,11 @@ export class ConfigurarSwitchAlimentarioComponent implements OnInit {
         data: { grupoalimenticio: grupoalimenticioselected }
       });
 
-      crearAlimento.afterClosed().subscribe(result=>{
+      crearAlimento.afterClosed().subscribe(result => {
         if (result.reload) {
           window.location.reload();
         }
-      })
-
+      });
     } else {
       this.dialog.open(BasicDialogComponent, {
         data: {
@@ -131,7 +130,7 @@ export class ConfigurarSwitchAlimentarioComponent implements OnInit {
 
   modificarAlimento() {
     if (this.alimentosfc.valid) {
-      const alimentoselected = this.alimentos.filter(
+      const alimentoselected = this.alimentos.find(
         al => al.alimento_id == this.alimentosfc.value
       );
 
@@ -143,11 +142,11 @@ export class ConfigurarSwitchAlimentarioComponent implements OnInit {
         }
       );
 
-      modificarAlimento.afterClosed().subscribe(result=>{
+      modificarAlimento.afterClosed().subscribe(result => {
         if (result.reload) {
           window.location.reload();
         }
-      })
+      });
     } else {
       this.dialog.open(BasicDialogComponent, {
         data: {

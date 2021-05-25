@@ -309,7 +309,9 @@ export class CreacionDietaComponent implements OnInit {
 
   selecionarAlimentosGrupos(event: string) {
     this.alimentosToShow = this.alimentos.filter(
-      alimento => alimento.grupoalimenticio_id === event
+      alimento =>
+        alimento.grupoalimenticio_id === event &&
+        alimento.alimento_estado_id == '1'
     );
   }
 

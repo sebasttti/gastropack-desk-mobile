@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./alimentos-upload.component.scss']
 })
 export class AlimentosUploadComponent implements OnInit {
-
   grupoalimenticio: Array<GrupoAlimenticio> = [];
   alimentos: Array<Alimento> = [];
   alimentosToShow: Array<Alimento> = [];
@@ -113,7 +112,9 @@ export class AlimentosUploadComponent implements OnInit {
 
   selecionarAlimentosGrupos(event: string) {
     this.alimentosToShow = this.alimentos.filter(
-      alimento => alimento.grupoalimenticio_id === event
+      alimento =>
+        alimento.grupoalimenticio_id === event &&
+        alimento.alimento_estado_id == '1'
     );
   }
 
