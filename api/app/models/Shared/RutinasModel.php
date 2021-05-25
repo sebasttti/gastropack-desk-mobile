@@ -267,7 +267,11 @@ class RutinasModel {
 
     function mostrarAlimentos(){
 
-        $query = "select * from alimento";
+        $query = "select alimento_id,
+                    grupoalimenticio_id,
+                    alimento_nombre,
+                    if(alimento_estado=100,'activo','inactivo') as alimento_estado
+                    from alimento";
         $this->db->query($query);
         $response = $this->db->responseAll();
 
@@ -292,6 +296,45 @@ class RutinasModel {
 
         return $response;
 
+    }
+
+    function agregarAlimento(){
+
+        $grupoalimenticio_id = $_REQUEST['grupoalimenticio_id'];
+        $alimento_nombre = $_REQUEST['alimento_nombre'];
+        
+        $query = "INSERT INTO alimento (grupoalimenticio_id,alimento_nombre) 
+                  values ($grupoalimenticio_id,$alimento_nombre)";
+
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {                                  
+            return array('status' => 'success', 'message'=>'Datos ingresados con exito');            
+        }else{
+            return array('status' => 'failure', 'message'=>'Problema con la base de datos');
+        }
+
+    }
+
+    function modificarAlimento(){
+        $alimento_id = $_REQUEST['alimento_id'];
+        $alimento_nombre = $_REQUEST['alimento_nombre'];
+        $alimento_estado = $_REQUEST['alimento_estado'];
+
+        $query = "UPDATE alimento SET 
+                    alimento_nombre = $alimento_nombre,
+                    alimento_estado = $alimento_estado
+                  WHERE alimento_id = $alimento_id";
+
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {                                  
+        return array('status' => 'success', 'message'=>'Datos modificados con exito');            
+        }else{
+        return array('status' => 'failure', 'message'=>'Problema con la modificacion de alimentos');
+        }
     }
 }
 

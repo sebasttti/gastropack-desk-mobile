@@ -139,6 +139,20 @@ class Rutinas extends Controller{
         printJSON($response);
 
     }
+
+    function agregarAlimento(){
+
+        $agregarAlimento = $this->model->agregarAlimento();
+        
+        printJSON($agregarAlimento);
+
+    }
+
+    function modificarAlimento(){
+        $modificarAlimento = $this->model->modificarAlimento();
+        
+        printJSON($modificarAlimento);
+    }
 }
 
 ?>

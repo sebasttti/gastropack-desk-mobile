@@ -6,6 +6,7 @@ import { CitasLayoutComponent } from './components/citas/citas-layout/citas-layo
 import { PlanesLayoutComponent } from './components/planes/planes-layout/planes-layout.component';
 import { ListadoRutinasComponent } from '../shared/components/rutinas/listado-rutinas/listado-rutinas.component';
 import { ListadoEvidenciasComponent } from '../shared/components/evidencias/listado-evidencias/listado-evidencias.component';
+import { SwitchAlimentarioLayoutComponent } from './components/switch-alimentario/switch-alimentario-layout/switch-alimentario-layout.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,11 @@ const routes: Routes = [
       {
         path: 'planes/rutinas/evidencias/:rutinaId',
         component: ListadoEvidenciasComponent
-      }
+      },
+      {
+        path: 'switchalimentario',
+        component: SwitchAlimentarioLayoutComponent
+      },
     ]
   }
 ];

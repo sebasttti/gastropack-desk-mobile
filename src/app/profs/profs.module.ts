@@ -16,6 +16,10 @@ import { SolicitarCitasDialogComponent } from './components/dialogs/solicitar-ci
 import { CitasOptionsDialogComponent } from './components/dialogs/citas-options-dialog/citas-options-dialog.component';
 import { ResultadoCitaDialogComponent } from './components/dialogs/resultado-cita-dialog/resultado-cita-dialog.component';
 import { ListadoPlanesComponent } from './components/planes/listado-planes/listado-planes.component';
+import { ConfigurarSwitchAlimentarioComponent } from './components/switch-alimentario/configurar-switch-alimentario/configurar-switch-alimentario.component';
+import { SwitchAlimentarioLayoutComponent } from './components/switch-alimentario/switch-alimentario-layout/switch-alimentario-layout.component';
+import { AgregarAlimentoDialogComponent } from './components/dialogs/agregar-alimento-dialog/agregar-alimento-dialog.component';
+import { ModificarAlimentoDialogComponent } from './components/dialogs/modificar-alimento-dialog/modificar-alimento-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { ListadoPlanesComponent } from './components/planes/listado-planes/lista
     SolicitarCitasDialogComponent,
     CitasOptionsDialogComponent,
     ResultadoCitaDialogComponent,
-    ListadoPlanesComponent
+    ListadoPlanesComponent,
+    ConfigurarSwitchAlimentarioComponent,
+    SwitchAlimentarioLayoutComponent,
+    AgregarAlimentoDialogComponent,
+    ModificarAlimentoDialogComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +50,9 @@ import { ListadoPlanesComponent } from './components/planes/listado-planes/lista
   entryComponents: [
     SolicitarCitasDialogComponent,
     CitasOptionsDialogComponent,
-    ResultadoCitaDialogComponent
+    ResultadoCitaDialogComponent,
+    AgregarAlimentoDialogComponent,
+    ModificarAlimentoDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
