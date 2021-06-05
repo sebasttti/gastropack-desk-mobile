@@ -111,26 +111,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  tB() {
-    // tslint:disable-next-line: no-shadowed-variable
-    return new Promise(resolve => {
-      const data = new FormData();
-
-      this.httpRequest
-        .postRequest(environment.tokenUrl, data)
-        .pipe(map(result => result as any))
-        .subscribe(response => {
-          const token = response.mensaje;
-          if (token === 'va24ehe') {
-            resolve(true);
-          } else {
-            this.router.navigate(['/tryout']);
-          }
-        });
-    });
-  }
-
+  
   sendForm() {
     if (this.homeForm.valid) {
       this.userLogged.checkLogin(this.homeForm.value).then(response => {
