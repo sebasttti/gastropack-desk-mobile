@@ -2,7 +2,7 @@ import { common } from './common';
 
 const production = {
   production: true,
-  apiUrl: 'http://api.sintonizateconlavida.com'
+  apiUrl: 'https://api.sintonizateconlavida.com'
 };
 
 export const environment = Object.assign(common, production);
