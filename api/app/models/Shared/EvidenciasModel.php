@@ -121,7 +121,11 @@ class EvidenciasModel {
         $query = "select evidencia_id from evidencia order by evidencia_id desc limit 1";
         $this->db->query($query);
         $response = $this->db->responseUnique();
-        return $response['evidencia_id'];
+        if ($response) {
+            return $response['evidencia_id'];
+        }else{
+            return 0;
+        }        
     }
 
     function mostrarAnexos($evidenciaId){

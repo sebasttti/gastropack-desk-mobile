@@ -82,6 +82,47 @@ class CitasModel{
         }
 
     }
+
+    function activarCita(){
+
+        $idCita = $_REQUEST['cita_id'];
+       
+        $query = 
+        "UPDATE
+         cita SET         
+         estado_cita_id = 1
+          where cita_id=$idCita;";
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    function modificarFechaCita(){
+
+        $idCita = $_REQUEST['cita_id'];
+        $fechaCita = $_REQUEST['cita_fecha'];
+        
+        $query = 
+        "UPDATE
+         cita SET         
+         cita_fecha = '".$fechaCita."'
+          where cita_id=$idCita;";
+        $this->db->query($query);         
+        $result = $this->db->rowCount();
+
+        if ($result > 0) {
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
 
 ?>

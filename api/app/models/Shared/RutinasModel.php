@@ -106,7 +106,11 @@ class RutinasModel {
         $query = "select rutina_id from rutina order by rutina_id desc limit 1";
         $this->db->query($query);
         $response = $this->db->responseUnique();
-        return $response['rutina_id'];
+        if ($response) {
+            return $response['rutina_id'];
+        }else{
+            return 0;
+        }
     }
     
     function mostrarAnexos($rutinaId){

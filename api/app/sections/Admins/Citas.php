@@ -56,6 +56,32 @@ class Citas extends Controller{
 
         printJSON($response);
     }
+
+    function activarCita(){
+        $activacionCita = $this->model->activarCita();
+        $response;
+
+        if ($activacionCita) {
+            $response = successFailure(true);            
+        }else{
+            $response = successFailure(false);
+        }
+
+        printJSON($response);
+    }
+
+    function modificarFechaCita(){
+        $modificacionCita = $this->model->modificarFechaCita();
+        $response;
+
+        if ($modificacionCita) {
+            $response = successFailure(true);            
+        }else{
+            $response = successFailure(false);
+        }
+
+        printJSON($response);
+    }
     
 }
 

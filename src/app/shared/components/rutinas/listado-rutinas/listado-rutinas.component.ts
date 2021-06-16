@@ -161,7 +161,7 @@ export class ListadoRutinasComponent
     });
 
     verRutina.afterClosed().subscribe(response=>{
-      if (response.opcionSwitchAlimentario) {
+      if (response && response.opcionSwitchAlimentario) {
         //se abre el Dialogo de Switch Alimentario
         const switchAlDialog = this.dialog.open(SwitchAlimentosDialogComponent,{
           data:{switchAlimentario:response.switchAlimentario,rutina:rutinaToShow},

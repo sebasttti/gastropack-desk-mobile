@@ -4,6 +4,15 @@
         Actualmente no tienes opciones para esta cita
       </h4>
       <button
+        *ngIf="avilableOption.includes('activar')"
+        class="mt-10 mb-10"
+        mat-raised-button
+        color="primary"
+        (click)="closeOptions('activar')"
+      >
+        Activar Cita
+      </button>
+      <button
         *ngIf="avilableOption.includes('aprobar')"
         class="mt-10 mb-10"
         mat-raised-button
@@ -20,6 +29,15 @@
         (click)="closeOptions('anular')"
       >
         Anular Cita
+      </button>
+      <button
+        *ngIf="avilableOption.includes('modificarFecha')"
+        class="mt-10 mb-10"
+        mat-raised-button
+        color="accent"
+        (click)="closeOptions('modificarFecha')"
+      >
+        Modificar fecha de la cita
       </button>
     </div>
   </mat-dialog-content>

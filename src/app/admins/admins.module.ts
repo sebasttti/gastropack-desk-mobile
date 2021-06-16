@@ -18,6 +18,7 @@ import { OpcionesCitaDialogComponent } from './components/dialogs/opciones-cita-
 import { OpcionesPersonaDialogComponent } from './components/dialogs/opciones-persona-dialog/opciones-persona-dialog.component';
 import { AgregarPersonaDialogComponent } from './components/dialogs/agregar-persona-dialog/agregar-persona-dialog.component';
 import { VerPersonaDialogComponent } from './components/dialogs/ver-persona-dialog/ver-persona-dialog.component';
+import { ModificarFechaCitaDialogComponent } from './components/dialogs/modificar-fecha-cita-dialog/modificar-fecha-cita-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VerPersonaDialogComponent } from './components/dialogs/ver-persona-dial
     OpcionesCitaDialogComponent,
     OpcionesPersonaDialogComponent,
     AgregarPersonaDialogComponent,
-    VerPersonaDialogComponent
+    VerPersonaDialogComponent,
+    ModificarFechaCitaDialogComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { VerPersonaDialogComponent } from './components/dialogs/ver-persona-dial
     OpcionesCitaDialogComponent,
     OpcionesPersonaDialogComponent,
     AgregarPersonaDialogComponent,
-    VerPersonaDialogComponent
+    VerPersonaDialogComponent,
+    ModificarFechaCitaDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

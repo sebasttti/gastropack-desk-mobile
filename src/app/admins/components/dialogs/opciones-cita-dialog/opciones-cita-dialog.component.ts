@@ -21,15 +21,15 @@ export class OpcionesCitaDialogComponent implements OnInit {
   private showAvilableOption() {
     switch (this.data.cita_estado_id) {
       case '1':
-        this.avilableOption = ['anular', 'aprobar'];
+        this.avilableOption = ['anular', 'aprobar','modificarFecha'];
         break;
 
       case '2':
-        this.avilableOption = [];
+        this.avilableOption = ['activar'];
         break;
 
       case '3':
-        this.avilableOption = ['anular'];
+        this.avilableOption = ['anular','modificarFecha'];
         break;
 
       case '4':

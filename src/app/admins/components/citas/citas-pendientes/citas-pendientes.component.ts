@@ -22,6 +22,7 @@ import { UserloginService } from 'src/app/core/services/userlogin.service';
 import { CitasViewDialogComponent } from 'src/app/shared/components/dialogs/citas/citas-view-dialog/citas-view-dialog.component';
 import { environment } from 'src/environments/environment';
 import { OpcionesCitaDialogComponent } from '../../dialogs/opciones-cita-dialog/opciones-cita-dialog.component';
+import { ModificarFechaCitaDialogComponent } from '../../dialogs/modificar-fecha-cita-dialog/modificar-fecha-cita-dialog.component';
 
 @Component({
   selector: 'app-citas-pendientes',
@@ -163,29 +164,70 @@ export class CitasPendientesComponent
 
     citasOptions.afterClosed().subscribe(res => {
       if (res) {
-        let url = '';
+        if (res.option == 'modificarFecha') {
+          this.modificarFechaCita(id);
+        } else {
+          let url = '';
+          const data = new FormData();
+
+          data.append('cita_id', id);
+
+          switch (res.option) {
+            case 'activar':
+              url = environment.apiUrl + '/Admins/Citas/activarCita/';
+              break;
+
+            case 'anular':
+              url = environment.apiUrl + '/Admins/Citas/anularCita/';
+              break;
+
+            case 'aprobar':
+              url = environment.apiUrl + '/Admins/Citas/aprobarCita/';
+              break;
+
+            default:
+              break;
+          }
+
+          this.httpRequest
+            .postRequest(url, data)
+            .pipe(map(result => result as MessageRequest))
+            .subscribe(response => {
+              if (response.status === 'success') {
+                this.mostrarCitas();
+              } else {
+                console.log(`${response.status}: ${response.message}`);
+              }
+            });
+        }
+      }
+    });
+  }
+
+  private modificarFechaCita(id: any) {
+    const cita = this.listadoCitas.find(cita => cita.cita_id === id);
+
+    const citasOptions = this.dialog.open(ModificarFechaCitaDialogComponent, {
+      width: this.isHandsetValue ? '90%' : '600px',
+      data: { cita: cita }
+    });
+
+    citasOptions.afterClosed().subscribe(res => {
+      if (res && res.option == 'modificar') {
+        let url = environment.apiUrl + '/Admins/Citas/modificarFechaCita/';
         const data = new FormData();
 
+        console.log(id, res.fecha);
+
         data.append('cita_id', id);
-
-        switch (res.option) {
-          case 'anular':
-            url = environment.apiUrl + '/Admins/Citas/anularCita/';
-            break;
-
-          case 'aprobar':
-            url = environment.apiUrl + '/Admins/Citas/aprobarCita/';
-            break;
-
-          default:
-            break;
-        }
+        data.append('cita_fecha', res.fecha);
 
         this.httpRequest
           .postRequest(url, data)
           .pipe(map(result => result as MessageRequest))
           .subscribe(response => {
             if (response.status === 'success') {
+              alert('Fecha de la cita modificada con éxito');
               this.mostrarCitas();
             } else {
               console.log(`${response.status}: ${response.message}`);
