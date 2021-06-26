@@ -211,6 +211,7 @@ export class ListadoUsuariosComponent
       direccion: personaNF.persona_direccion,
       telefono: personaNF.persona_telefono,
       documento: personaNF.persona_documento,
+      email: personaNF.persona_email,
       contrasena: personaNF.persona_contrasena
     };
 

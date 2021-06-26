@@ -16,6 +16,7 @@ class ProfileModel{
         $persona_telefono = $_REQUEST['persona_telefono'];
         $persona_documento = $_REQUEST['persona_documento'];
         $persona_contrasena = $_REQUEST['persona_contrasena'];
+        $persona_email = $_REQUEST['persona_email'];
        
         $squery = "
         UPDATE persona SET         
@@ -23,7 +24,8 @@ class ProfileModel{
          persona_nombres = '" . $persona_nombres. "', 
          persona_apellidos = '" . $persona_apellidos . "', 
          persona_direccion = '" . $persona_direccion . "', 
-         persona_telefono = '" . $persona_telefono . "', 
+         persona_telefono = '" . $persona_telefono . "',
+         persona_email = '" . $persona_email . "', 
          persona_documento = '" . $persona_documento . "' 
          where persona_id = $persona_id
         ";

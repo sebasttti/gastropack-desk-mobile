@@ -47,6 +47,7 @@ export class ProfileDialogComponent implements OnInit, OnDestroy {
       direccion: [this.data.direccion, [Validators.required]],
       telefono: [this.data.telefono, [Validators.required]],
       documento: [this.data.documento, [Validators.required]],
+      email: [this.data.email, [Validators.required]],
       contrasena: [this.data.contrasena, [Validators.required]]
     });
   }
@@ -60,6 +61,7 @@ export class ProfileDialogComponent implements OnInit, OnDestroy {
       dataToSend.append('persona_direccion', this.profileForm.value.direccion);
       dataToSend.append('persona_telefono', this.profileForm.value.telefono);
       dataToSend.append('persona_documento', this.profileForm.value.documento);
+      dataToSend.append('persona_email', this.profileForm.value.email);
       dataToSend.append(
         'persona_contrasena',
         this.profileForm.value.contrasena

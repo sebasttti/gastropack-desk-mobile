@@ -111,6 +111,10 @@ class ProfsModel{
         $profesional_telefono = $_REQUEST['profesional_telefono'];
         $profesional_documento = $_REQUEST['profesional_documento'];
 
+        if (!$this->verifyEmail($profesional_email)) {
+            return false;
+        }
+
         $query= "
         INSERT INTO persona
         (tipo_persona_id,
@@ -143,6 +147,23 @@ class ProfsModel{
             return true;
         }else{
             return false;
+        }
+    }
+
+    function verifyEmail($email){
+        $persona_email = $email;
+
+        $squery = "SELECT * FROM persona WHERE persona_email = '".$persona_email."'";
+
+        $this->db->query($squery);
+
+        $response = $this->db->responseUnique();
+
+        if ($response) {
+            //si existe el correo, no pasa la prueba
+            return false;
+        }else{
+            return true;
         }
     }
 
