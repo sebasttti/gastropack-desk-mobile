@@ -7,6 +7,7 @@ import { NotificationsService } from './services/notifications.service';
 import { HandsetService } from './services/handset.service';
 import { UnsubscribeService } from './services/unsubscribe.service';
 import { DeviceService } from './services/device.service';
+import { StatusBarService } from './services/statusBar.service';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DeviceService } from './services/device.service';
     NotificationsService,
     HandsetService,
     UnsubscribeService,
-    DeviceService
+    DeviceService,
+    StatusBarService
   ]
 })
 export class CoreModule {}

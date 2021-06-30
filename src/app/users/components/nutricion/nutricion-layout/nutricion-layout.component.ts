@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import { UserloginService } from 'src/app/core/services/userlogin.service';
+import { StatusBarService } from 'src/app/core/services/statusBar.service';
 
 @Component({
   selector: 'app-nutricion-layout',
@@ -24,8 +25,11 @@ export class NutricionLayoutComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
-    private userLogin: UserloginService
-  ) {}
+    private userLogin: UserloginService,
+    private statusBarService: StatusBarService
+  ) {
+    this.statusBarService.setStatusBar();
+  }
 
   ngOnInit() {
     this.userLogin.asignarTipoProceso(3);
