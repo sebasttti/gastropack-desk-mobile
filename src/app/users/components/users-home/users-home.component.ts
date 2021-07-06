@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatusBarService } from 'src/app/core/services/statusBar.service';
 import { UserloginService } from 'src/app/core/services/userlogin.service';
 
 @Component({
@@ -10,7 +11,11 @@ export class UsersHomeComponent implements OnInit {
 
   userLogin$;
 
-  constructor(private userLogged: UserloginService) {
+  constructor(
+    private userLogged: UserloginService,
+    private statusBarService: StatusBarService)
+  {
+    this.statusBarService.setStatusBar();
   }
 
   ngOnInit() {

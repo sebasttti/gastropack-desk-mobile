@@ -14,7 +14,6 @@ import { Title } from '@angular/platform-browser';
 import { ProfileDialogComponent } from 'src/app/shared/components/dialogs/profile-dialog/profile-dialog.component';
 import { NotificationsDialogComponent } from 'src/app/shared/components/dialogs/notifications-dialog/notifications-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-users-layout',
@@ -45,11 +44,10 @@ export class UsersLayoutComponent implements OnInit, OnDestroy {
     private httpService: HttpRequestService,
     private title: Title,
     private overlayContainer: OverlayContainer,
-    private statusBar: StatusBar
+    
     ) {
     this.setTitle();
     this.setMaterialContainer();
-    this.setStatusBar();
     const subscription1 = this.isHandset$.subscribe(value => {
       this.isHandsetValue = value;
     });
@@ -58,11 +56,6 @@ export class UsersLayoutComponent implements OnInit, OnDestroy {
 
   setTitle() {
     this.title.setTitle('Gastropack Usuarios');
-  }
-
-  private setStatusBar(){
-    this.statusBar.overlaysWebView(false);
-    this.statusBar.backgroundColorByHexString('#03a9f4');
   }
 
   setMaterialContainer() {

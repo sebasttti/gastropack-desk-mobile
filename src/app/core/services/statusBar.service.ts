@@ -14,12 +14,13 @@ export class StatusBarService {
 
   public setStatusBar() {
     if (this.deviceService.mobile) {
-      this.statusBar.overlaysWebView(false);     
+      this.statusBar.overlaysWebView(false);
+      this.setStatusBarColor();   
     }
   }
 
   public setStatusBarColor(){
     //SE configura temporalmente unicamente para el usuario
-    this.statusBar.backgroundColorByHexString('#d1d1d1');
+    this.statusBar.backgroundColorByHexString('#03a9f4');
   }
 }
